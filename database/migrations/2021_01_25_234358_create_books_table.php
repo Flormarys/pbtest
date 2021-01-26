@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('url');
-            $table->foreignId('subject_id')->constrained('subject');
+            $table->foreignId('subject_id')->constrained('subjects');
             $table->string('language');
             $table->integer('word_count');
             $table->boolean('is_original');
