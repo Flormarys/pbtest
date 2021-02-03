@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\Book;
+use App\Models\Subject;
+
+
 
 class bdfilling extends Command
 {
@@ -39,15 +43,47 @@ class bdfilling extends Command
      */
     public function handle()
     {
+        // Remove all subjects and books
+        Book::where('id', '>', 0)->delete();
+        Subject::where('id', '>', 0)->delete();
         // Get the contents
         $strJsonBooks = file_get_contents("books.json");
+
         $arrayBooks = json_decode($strJsonBooks, true);
-        var_dump($arrayBooks); // print array
 
+     
+        foreach($arrayBooks as $book){
+            $subjectObject = $book['subject'][0];
+            $subjectModel = new Subject;
+            $subjectModel->identifier = intval($subjectObject['Identifier']);
+            $subjectModel->name = $subjectObject['Name'];
+            $subjectModel->save();
+                        
 
-        //$flight = new Flight;
-        //$flight->name = $request->name;
-        //$flight->save();
+            
+            // check if is not mandatory what to do
+            foreach ($book as $column => $data) {
+                if (!empty($data['title']) & 
+                    !empty($data['url']) & 
+                    !empty($data['Language']) & 
+                    !empty($data['word_count']) & 
+                    !empty($data['is_original'])) {
+                
+                $saveBook = new Book;
+                $saveBook->title = $book['title'];
+                $saveBook->url = $book['url'];
+                $saveBook->subject_id = $subjectModel['id'];
+                $saveBook->language = $book['Language'];
+                $saveBook->word_count = $book['word_count'];
+                $saveBook->is_original = $book['is_original'];
+            //$saveBook->based_on = $book['based_on'];
+                            $saveBook->save(); 
+            }
+            }
+
+            
+        }
+
 
     }
 }

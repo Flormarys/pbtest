@@ -10,5 +10,22 @@ class Book extends Model
 {
     use HasFactory;
 
-    return $this->hasMany(Subject::class);
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'books';
+
+    public $timestamps = false;
+
+    protected $fillable = ['subject_id'];
+
+    public function oneSubject()
+    {
+
+    return $this->hasOne(Subject::class);
+
+    }
+
 }
