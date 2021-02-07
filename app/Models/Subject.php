@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Book;
 
 class Subject extends Model
 {
@@ -17,13 +16,16 @@ class Subject extends Model
      */
     protected $table = 'subjects';
 
+    /**
+     * This action will make the protected field can be filled
+     */
+
     protected $fillable = ['id'];
 
-    public $timestamps = false;
+    /**
+     * This will avoid the timestamp as it is not necessary
+     */
 
-    public function subjects()
-    {
-        return $this->hasMany(Book::class);
-    }
+    public $timestamps = false;
 
 }

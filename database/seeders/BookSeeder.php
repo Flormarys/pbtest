@@ -15,21 +15,25 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('books')->delete();        
     	$jsonData = file_get_contents("books.json");
-    	$arrayBooks = json_decode($jsonData, true);     
-
+    	$arrayBooks = json_decode($jsonData, true); 
+        $requiredAttributes = ['title', 'url', 'subject', 'Language', 'word_count', 'is_original', 'based_on'];    
     	foreach ($arrayBooks as $book) {
             $subjectObject = $book['subject'][0];
-            DB::table('books')->insert([
-                ['title' => isset($book['title']) ? $book['title'] : NULL,
-                'url' => isset($book['url']) ? $book['url'] : NULL,
-                'subject_id' => intval($subjectObject['Identifier']),
-                'language' => isset($book['Language']) ? $book['Language'] : NULL,
-                'word_count' => isset($book['word_count']) ? $book['word_count'] : NULL,
-                'is_original' => isset($book['is_original']) ? $book['is_original'] : NULL,
-                'based_on' => isset($book['based_on'])? $book['based_on'] : NULL,]
-            ]);
-
+             if(count(array_diff_assoc(array_keys($book), $requiredAttributes)) === 0){
+                DB::table('books')->insert([
+                [
+                    'title' => $book['title'],
+                    'url' => $book['url'],
+                    'subject_id' => intval($subjectObject['Identifier']),
+                    'language' => $book['Language'],
+                    'word_count' => $book['word_count'],
+                    'is_original' => $book['is_original'],
+                    'based_on' => isset($book['based_on'])? $book['based_on'] : NULL,
+                ]
+                ]);
+            }
         }
     }
 }

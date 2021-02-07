@@ -17,14 +17,26 @@ class Book extends Model
      */
     protected $table = 'books';
 
+    /**
+     * This will avoid the timestamp as it is not necessary
+     */
+
     public $timestamps = false;
+
+    /**
+     * This action will make the protected field can be filled
+     */
 
     protected $fillable = ['subject_id'];
 
-    public function oneSubject()
+    /**
+     * One book has one subject.
+     */   
+
+    public function subject()
     {
 
-    return $this->hasOne(Subject::class);
+        return $this->hasOne(Subject::class);
 
     }
 
