@@ -131,9 +131,22 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'search' => [
+            'string' => 'The :attribute format is invalid, must be letters or numbers',
+            'max' => 'The :attribute format is too long',
         ],
+        'subject' =>[
+            'integer' => 'The :attribute format is invalid, must be numeric',
+        ],
+        'page' => [
+            'integer' => 'The :attribute format is invalid, must be numeric',
+        ],
+        'per_page' => [
+            'integer' => 'The :attribute format is invalid, must be numeric',
+        ],
+        'is_original' => [
+            'integer' => 'The :attribute format is invalid, must be numeric',
+        ]
     ],
 
     /*

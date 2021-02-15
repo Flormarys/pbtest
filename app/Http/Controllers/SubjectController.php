@@ -13,14 +13,14 @@ use App\Http\Resources\BookCollection;
 class SubjectController extends Controller
 {
 
-    public function subjectList()
-	   {
-	        return SubjectResource::collection(Subject::all());
-	   }
+	public function subjectList()
+	{
+		return SubjectResource::collection(Subject::all());
+	}
 
 	public function subject($id)
-    {
-        return Subject::find($id);
-    }   
+	{
+		return Subject::find($id);
+	}   
 
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Book;
 
 class Subject extends Model
 {
@@ -28,4 +29,8 @@ class Subject extends Model
 
     public $timestamps = false;
 
+    public function book()
+    {
+        return $this->belongsToMany(Book::class);
+    }
 }

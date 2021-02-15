@@ -3,39 +3,57 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Book;
-use App\Http\Resources\BookCollection;
-use App\Http\Resources\BookResource;
 use App\Models\Subject;
-use App\Http\Controllers\SubjectController;
-use App\Http\Resources\SubjectResource;
-use App\Http\Resources\SubjectCollection;
+use App\Http\Resources\BookResource;
+use Illuminate\Support\Facades\Validator;
 
 
 class BookController extends Controller
 {
     /**
-     * List all books.
-     *
-     * @param Request $request
-     * @return BookCollection
-     */
-    public function booksList()
-     {
-        return BookResource::collection(Book::all());
-     }
+    * List all books.
+    *
+    * @param Request $request
+    * @return BookCollection with Subject relationship
+    */
 
-    public function book($id)
+    public function allParameters(Request $request)
     {
-        return Book::find($id);
-    }
+        $validated = Validator::make($request->all(), [
+            'search' => 'string|max:255',
+            'subject' => 'integer',
+            'page' => 'integer',
+            'is_original' => 'boolean',
+            'per_page'  => 'integer'
+        ]);
 
-    public function relatedBooks($id)
-    {
-      $allBooks = BookResource::collection(Book::all());
-      return $allBooks->whereIn('subject_id', Subject::find($id));
+        if ($validated->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validated->errors()->all()
+            ]);
+        }
 
+        $books = Subject::join('books', 'books.subject_id','=','subjects.id');
+        if ($request->has('search')) {
+            $books = $books
+                ->orWhere('books.title', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('subjects.name', 'like', '%' . $request->input('search') . '%');
+            }
+
+        if($request->has('is_original')) {
+            $books = $books->where('books.is_original', '=', $request->input('is_original'));          
+        }
+
+        if($request->has('subject')) {
+            $books = $books->where('books.subject_id', '=', $request->input('subject'));
+        }
+
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
+
+        $books = $books->paginate($per_page);
+
+        return BookResource::collection($books);
     }
 
 }
-
