@@ -8,7 +8,7 @@ use App\Models\Book;
 
 class Subject extends Model
 {
-    use HasFactory; // this probably is not need it.
+    use HasFactory;
 
         /**
      * The table associated with the model.

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
+use App\Models\Subject;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookSeeder extends Seeder
 {
@@ -15,7 +17,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->delete();        
+        /*DB::table('books')->delete();        
     	$jsonData = file_get_contents("books.json");
     	$arrayBooks = json_decode($jsonData, true); 
         $requiredAttributes = ['title', 'url', 'subject', 'Language', 'word_count', 'is_original', 'based_on'];    
@@ -34,6 +36,9 @@ class BookSeeder extends Seeder
                 ]
                 ]);
             }
-        }
+        }*/
+        $book = Book::factory()
+                ->count(50)
+                ->create();
     }
 }

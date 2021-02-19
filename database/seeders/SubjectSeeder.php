@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Subject;
 use Illuminate\Support\Facades\DB;
+use App\Models\Book;
+
 
 
 class SubjectSeeder extends Seeder
@@ -16,7 +18,7 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('subjects')->delete();
+        /*DB::table('subjects')->delete();
     	$jsonData = file_get_contents("books.json");
     	$arrayBooks = json_decode($jsonData, true);
     	foreach($arrayBooks as $book){  
@@ -24,8 +26,7 @@ class SubjectSeeder extends Seeder
             DB::table('subjects')->insertOrIgnore([
                 ['id' => intval($subjectObject['Identifier']), 'name' => $subjectObject['Name']]
             ]);
-		}
-	
+		}*/
     }
 }
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Subject;
 use Illuminate\Support\Facades\DB;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 class DatabaseSeeder extends Seeder
