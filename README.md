@@ -21,7 +21,7 @@ First of all, learn. Mainly in my case by asking to others colleagues and friend
 ### Iterating the solution
 When I got the API at the first time working and after reading some practices I went for tests. It was an interesting challenge, just thinking about cases and how to implement those was a new world for me. Fortunately other developers helped me by sending me intresting links and with some test cases examples to implement.  
 I would say the most challenging parts were the tests and also the Resources for JSON responses.  
-The following steps I took, implied that I ran the tests after each change to ensure the API continued working as expected by the tests. I would say it was one of the most important knowledge I received from my previous job :blush: . But also I would like to mention the docker understanding was a incredible travel. Honestly a friend had to help closely.  
+The following steps I took, implied that I ran the tests after each change to ensure the API continued working as expected by the tests. I would say it was one of the most important knowledge I received from my previous job :blush: . But also I would like to mention the docker understanding was a incredible travel. Honestly a friend had to help me closely.  
 
 I noticed the Book controller was big, the whole logic was there :worried:, I understood it is now a good MVC practice. So, I moved the business logic to the Model.  
 But then, I realized I had a big function in the Model. It still didn't look nice, then I divide the big monolitic function into parts, in that way I made sure each function does only 1 thing.  
@@ -65,18 +65,19 @@ $ cp env-example .env
 
 6. Up php (app), nginx (webserver) and mysql (db) containers: `docker-compose up`.
 
-5. Install dependences
+7. Install dependences
 `docker-compose exec app composer install`
 
-6. Generate Laravel Key
+8. Generate Laravel Key
 `docker-compose exec app php artisan key:generate`
 
-7. Run MySQL DB Migrations
+9. Run MySQL DB Migrations
 `docker-compose exec app php artisan migrate`
 
-8. Populate Books from books.json provided file
+10. Populate Books from books.json provided file
 `docker-compose exec app php artisan db:seed`
 
+11. Now you can use the API by `https://localhost/api/books` endpoint. Enoying filtering books with the GET parameters!
 
 ## Functional tests
 
