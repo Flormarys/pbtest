@@ -16,7 +16,7 @@ The challenge provides a `books.json` file, in this case I put this file  in `da
 By running the Laravel's seeder action, all books will be populated in the database.
 
 ## What was my goal on this project?
-First of all, learn. Mainly in my case by asking to another colleagues with more experiencies, getting feedback from them and reading blogs, tutorials and official docs (mainly from Laravel and PHP).  
+First of all, learn. Mainly in my case by asking to others colleagues and friends with more expertise and experience, getting feedback from them and reading blogs, tutorials and official docs (mainly from Laravel and PHP).  
 
 ### Iterating the solution
 When I got the API at the first time working and after reading some practices I went for tests. I was an interesting challenge, from thinking about cases and how to implement those. Fortunately other colleagues helped me by sending me intresting links and with some test cases examples to implement.  
