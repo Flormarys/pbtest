@@ -3,14 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Subject;
-use Illuminate\Support\Facades\DB;
-use App\Models\Book;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
 class DatabaseSeeder extends Seeder
 {
+
+    use RefreshDatabase;
+
+    protected $bookJsonFile = './database/seeders/data/books.json';
+
     /**
      * Seed the application's database.
      *

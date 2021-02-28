@@ -10,7 +10,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-        /**
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -20,7 +20,6 @@ class Subject extends Model
     /**
      * This action will make the protected field can be filled
      */
-
     protected $fillable = ['id'];
 
     /**

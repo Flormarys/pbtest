@@ -143,11 +143,4 @@ return [
         ],
 
     ],
-
-    'memory_testing' => [
-        'driver' => 'mysql',
-        'database' => ':memory:',
-        'prefix' => '',
-    ],
-
 ];

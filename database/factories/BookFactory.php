@@ -23,20 +23,17 @@ class BookFactory extends Factory
      */
     public function definition()
     {
-        $books = [
-            'title' => $this->faker->text($maxNbChars = 200),
-            'url' => $this->faker->url,
+        $book = [
+            'title' => $this->faker->sentence(),
+            'url' => $this->faker->url(),
             'subject_id' => Subject::factory(),
             'language' => $this->faker->randomElement(['AR', 'EN', 'ES', 'FR', 'ZH']),
             'word_count' => $this->faker->numberBetween($min = 1000, $max = 9000),
             'is_original' => $this->faker->boolean(),
         ];
-        foreach ($books as $book) {
-            if($books['is_original'] == 0){
-                $books['based_on'] = $this->faker->url;
-            }
+        if($book['is_original'] == 0){
+            $book['based_on'] = $this->faker->url;
         }
-
-        return $books;
+        return $book;
     }
 }

@@ -24,7 +24,7 @@ use App\Http\Resources\SubjectCollection;
 |
 */
 
-Route::get('/books', [BookController::class, 'allParameters']);
+Route::get('/books', [BookController::class, 'index']);
 
 // Returns all subjects
 //Route::get('/books', [BookController::class, 'paginatedBooks']);

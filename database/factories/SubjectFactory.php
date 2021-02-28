@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class SubjectFactory extends Factory
 {
@@ -22,7 +23,7 @@ class SubjectFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence($nbWords = 3, $variableNbWords = true),
+            'name' => $this->faker->sentence()
           ];
     }
 }

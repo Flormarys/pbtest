@@ -3,12 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Book;
 use Illuminate\Support\Facades\DB;
-use App\Models\Subject;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BookSeeder extends Seeder
+class BookSeeder extends DatabaseSeeder
 {
     /**
      * Run the database seeds.
@@ -16,29 +13,39 @@ class BookSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        /*DB::table('books')->delete();        
-    	$jsonData = file_get_contents("books.json");
+    {      
+    	$jsonData = file_get_contents($this->bookJsonFile);
     	$arrayBooks = json_decode($jsonData, true); 
-        $requiredAttributes = ['title', 'url', 'subject', 'Language', 'word_count', 'is_original', 'based_on'];    
+        $requiredAttributes = [
+            'title', 
+            'url', 
+            'subject', 
+            'Language', 
+            'word_count', 
+            'is_original', 
+            'based_on'
+        ];    
+        $booksToInsert = [];
     	foreach ($arrayBooks as $book) {
-            $subjectObject = $book['subject'][0];
-             if(count(array_diff_assoc(array_keys($book), $requiredAttributes)) === 0){
-                DB::table('books')->insert([
-                [
+            $bookJsonProperties = array_keys($book);
+            $bookJsonPropertiesVsRequiredProperties = array_diff_assoc(
+                $bookJsonProperties, $requiredAttributes
+            );
+            if(count($bookJsonPropertiesVsRequiredProperties) === 0){
+                $subjectObject = $book['subject'][0];
+                $booksToInsert[] = [
                     'title' => $book['title'],
                     'url' => $book['url'],
                     'subject_id' => intval($subjectObject['Identifier']),
                     'language' => $book['Language'],
                     'word_count' => $book['word_count'],
                     'is_original' => $book['is_original'],
-                    'based_on' => isset($book['based_on'])? $book['based_on'] : NULL,
-                ]
-                ]);
+                    'based_on' => isset($book['based_on'])? $book['based_on'] : null,
+                ];
             }
-        }*/
-        $book = Book::factory()
-                ->count(50)
-                ->create();
+        }
+        if(count($booksToInsert) > 0) {
+            DB::table('books')->insert($booksToInsert);
+        }
     }
 }
