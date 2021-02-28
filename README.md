@@ -15,6 +15,22 @@ These are the opnional GET parameters that the API supports:
 The challenge provides a `books.json` file, in this case I put this file  in `database/seeders/data` folder.  
 By running the Laravel's seeder action, all books will be populated in the database.
 
+## What was my goal on this project?
+First of all, learn. Mainly in my case by asking to another colleagues with more experiencies, getting feedback from them and reading blogs, tutorials and official docs (mainly from Laravel and PHP).  
+
+### Iterating the solution
+When I got the API at the first time working and after reading some practices I went for tests. I was an interesting challenge, from thinking about cases and how to implement those. Fortunately other colleagues helped me by sending me intresting links and with some test cases examples to implement.  
+I would say the most challenging parts were the tests and the Resources for JSON responses.  
+The following steps I took, implied that I ran the tests after each change to ensure the API continued working as expected by the tests. Although honestly, the docker understanding was a incredible travel. I was interesting and a friend had to help closely.  
+
+I noticed my Book controller was big, the whole logic was there. So, I moved the business logic to the Model.  
+But then, I realized I had a big function in the Model. It didn't look nice, then I divide into parts, in that way I made sure each function does only 1 thing.  
+About the seeder which is responsible for reading and importing books and subject data, I was inserting one by one in the database when I was iteraring the books json array. I had to find a way to insert all books and subjects once in order to reduce DB operations.
+
+Finally, I did several adjustments related to functions and variables naming, code structure and those kind of things.
+
+I received some feedback after the implementation, I know each code an be improved to the infinite, but I think it is enough for me to prove I can learn and implement something from scratch. I will move on to another project, with a little bit more of complexity with my main goal in sight: **find a new job where I can continue learning by experienced people and making customers happier.**
+
 
 ## Requirements
 
