@@ -80,7 +80,7 @@ $ cp env-example .env
 
 ## Functional tests
 
-### Running the test at the first time
+### Setup
 The first time you run the test, you need to create the mysql test database manually and create a .env.testing file. Copy your `.env` file to a `.env.testing` file:
 `$ cp .env .env.testing`
 
