@@ -11,8 +11,8 @@ These are the opnional GET parameters that the API supports:
 - `is_original`: Search based on original or based on another books [Integer 0 - 1]
 - `subject`: Search by Subject's ID [Integer > 0]
 
-## How is the books populated if we do not have any POST method for add books?
-The challenge provides a `books.json` file located in `database/seeders/data` folder.  
+## How are the books populated in the database if we do not have any POST method for add books?
+The challenge provides a `books.json` file, in this case I put this file  in `database/seeders/data` folder.  
 By running the Laravel's seeder action, all books will be populated in the database.
 
 
