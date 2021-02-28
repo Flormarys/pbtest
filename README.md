@@ -1,7 +1,7 @@
 # About this repo
 
 I created this repo for practicing and learning about Laravel, PHP and OOP practices.
-This is one of the pre screening test from a Canadian company for a Full Stack PHP Developer.
+I took this challenge from a pre screening test that belongs to a Canadian company for a Full Stack PHP Developer position.
 You will find an API with one main endpoint: a book list in JSON format. 
 These are the opnional GET parameters that the API supports:
 
